@@ -37,4 +37,3 @@ uploadArtefacts:
 
 testSuites:
   - gauge run $specs
-  - echo %PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION%
