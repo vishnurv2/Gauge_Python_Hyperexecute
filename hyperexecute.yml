@@ -12,13 +12,16 @@ runson: win
 env:
   #  PAT: ${{ .secrets.testKey }}
   TARGET_OS: Windows 10
+  PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: python
 
 cacheKey: '{{ checksum "requirements.txt" }}'
 cacheDirectories:
   - pip_cache
 
 pre:
+  - pip install debugpy
   - pip install -r requirements.txt
+
 post:
   - cat hyperexecute.yml
 
@@ -34,3 +37,4 @@ uploadArtefacts:
 
 testSuites:
   - gauge run $specs
+  - echo %PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION%

@@ -1,3 +1,5 @@
+from sqlite3 import Time
+import time
 from getgauge.python import step
 from step_impl.utils.driver import Driver
 
@@ -9,6 +11,7 @@ def go_to_login_form_at(arg1):
 @step("Enter username <arg1>")
 def enter_username(arg1):
   Driver.driver.find_element_by_name('username').send_keys(arg1)
+  time.sleep(10);
 
 @step("Enter password <arg1>")
 def enter_password(arg1):
