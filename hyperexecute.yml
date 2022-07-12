@@ -1,0 +1,36 @@
+---
+version: 0.1
+globalTimeout: 90
+testSuiteTimeout: 90
+testSuiteStep: 90
+
+matrix:
+  specs: ["specs/example.spec"]
+
+runson: win
+
+env:
+  #  PAT: ${{ .secrets.testKey }}
+  TARGET_OS: Windows 10
+
+cacheKey: '{{ checksum "requirements.txt" }}'
+cacheDirectories:
+  - pip_cache
+
+pre:
+  - pip install -r requirements.txt
+post:
+  - cat hyperexecute.yml
+
+mergeArtifacts: true
+
+uploadArtefacts:
+  - name: Gauge Logs
+    path:
+      - logs/gauge.log
+  - name: TestReports
+    path:
+      - reports/**
+
+testSuites:
+  - gauge run $specs

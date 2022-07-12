@@ -1,0 +1,2 @@
+selenium==3.14
+getgauge==0.3.17
