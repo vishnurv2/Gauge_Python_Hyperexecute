@@ -25,7 +25,7 @@ class Driver(object):
         # start the remote browser on our server
         Driver.driver = webdriver.Remote(
             desired_capabilities=caps,
-            command_executor="http://%s:%s@stage-hub.lambdatest.com/wd/hub"%(self.username,self.authkey)
+            command_executor="http://%s:%s@hub.lambdatest.com/wd/hub"%(self.username,self.authkey)
         )
 
 
