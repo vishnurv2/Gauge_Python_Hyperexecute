@@ -1,0 +1,46 @@
+---
+version: 0.1
+globalTimeout: 90
+testSuiteTimeout: 90
+testSuiteStep: 90
+
+runson: win
+
+autosplit: true
+retryOnFailure: true
+
+maxRetries: 5
+concurrency: 4
+
+env:
+  #  PAT: ${{ .secrets.testKey }}
+  TARGET_OS: Windows 10
+  PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: python
+
+cacheKey: '{{ checksum "requirements.txt" }}'
+cacheDirectories:
+  - pip_cache
+
+pre:
+  - pip install debugpy
+  - pip install -r requirements.txt
+
+post:
+  - cat hyperexecute.yml
+
+mergeArtifacts: true
+
+uploadArtefacts:
+  - name: Gauge Logs
+    path:
+      - logs/gauge.log
+  - name: TestReports
+    path:
+      - reports/**
+
+testDiscovery:
+  type: raw
+  mode: static
+  command: grep -l 'herokuapp' specs/*.spec
+
+testRunnerCommand: gauge run $test

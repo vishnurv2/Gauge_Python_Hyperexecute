@@ -1,3 +1,4 @@
+Tags: herokuapp
 # Getting Started with Gauge
 
 ## Let's log in
