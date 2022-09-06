@@ -26,7 +26,7 @@ pre:
   - pip install -r requirements.txt
 
 post:
-  - cat hyperexecute.yml
+  - cat YAML/autosplit.yml
 
 mergeArtifacts: true
 
